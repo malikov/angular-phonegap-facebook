@@ -17,6 +17,10 @@ Add the facebook plugin to your app's config.xml file
     		<param name="APP_NAME" value="..." />
 	</gap:plugin>
 
+Add the plugin to your project
+	
+	cordova plugin add https://github.com/phonegap/phonegap-facebook-plugin.git --variable APP_ID="your app id" --variable APP_NAME="Your app name"
+
 Make sure to CHANGE the header cdv:"xmlns etc..." in your config.xml for gap:"xmlns etc..." Otherwise your build will FAIL
 
 Get the [angular-phonegap-ready](https://github.com/btford/hitch-a-ride-client/tree/master/app/components/angular-phonegap-ready) component

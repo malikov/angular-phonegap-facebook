@@ -30,7 +30,7 @@ In the app.module().run function add the injected component and call facebook.in
 
 
 ## Example 
-To be added
+View this [app](https://github.com/malikov/simple-angular-phonegap-facebook-app)
 
 ## License
 MIT

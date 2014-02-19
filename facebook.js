@@ -20,10 +20,11 @@ angular.module('malikov.phonegap.facebook',
       apiUrl : '',
       appId : null,
       options : {},
-
+      scope : { scope: "email" },
+      
       //set the appid in the init function
-      init : phonegapReady(function (appId,options) {
-        //default options include some permissions
+      init : function(appId,options){
+        console.log("facebook init function");
 
         appId = typeof appId !== 'undefined' ? appId : false;
         options = options || {permissions:[]};
@@ -34,11 +35,15 @@ angular.module('malikov.phonegap.facebook',
         angular.extend(this.options,options);
         this.appId = appId;
 
+        this.initFb(this.appId);
+        
+      },
+      initFb : phonegapReady(function(appId){
         FB.init({
-              appId: this.appId,
-              nativeInterface: CDV.FB,
-              useCachedDialogs: false
-          });
+                appId: appId,
+                nativeInterface: CDV.FB,
+                useCachedDialogs: false
+        });
       }),
       eventSubscribe : function(event,callbackFct){
         event = typeof event !== 'undefined' ? event : false;
@@ -49,15 +54,18 @@ angular.module('malikov.phonegap.facebook',
         if(typeof callbackFct !== 'function')
           return console.log('Argument should be a function');
 
-        FB.Event(event,callbackFct);
+        FB.Event.subscribe(event,callbackFct);
 
       },
-      login : function(callbackFct){
-
+      login : function(callbackFct,scope){
+        // ideally you wanna create the scope with the permissions passed in the init function
+        
         if(typeof callbackFct !== 'function')
           return console.log('Argument should be a function');
+        
+        scope = scope || this.scope;
 
-        FB.login(callbackFct);
+        FB.login(callbackFct,scope);
       },
       logout : function(callbackFct){
         if(typeof callbackFct !== 'function')
@@ -71,8 +79,12 @@ angular.module('malikov.phonegap.facebook',
 
         FB.getLoginStatus(callbackFct);
       },
-      me : function(){
-        // used to interact with fb's api
+      me : function(callbackFct){
+        // used to get your facebook profile
+        FB.api('/me',callbackFct);
+      },
+      getFriends : function(callbackFct){
+
       }
 
     };

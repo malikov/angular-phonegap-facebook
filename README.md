@@ -8,12 +8,6 @@ Create a key for your app (android or ios)
 
 For ANDROID APPS ONLY hash that key by following the instructions on [facebook developers](https://developers.facebook.com/docs/android/getting-started/)
 
-REPLACE -alias androiddebugkey WITH -alias [YOUR_KEYSTORE_ALIAS] AND %HOMEPATH%\.android\debug.keystore WITH PATH\TO\YOUR\KEYSTORE
-
-If you do not have openssl download it (I used version 0.9.8h) and then replace openssl with the PATH\TO\OPENSSL\BIN\OPENSSL
-
-Once you've run the command you should be prompted with a message asking you to enter a password. Just enter android. Then a key hash should be generated.
-
 
 Add it to your facebook app (Apps > [your app's name] > Settings then click on add platform, select android and add it in Key Hashes)
 
